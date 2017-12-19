@@ -1,0 +1,28 @@
+body{
+    background-image: url("/Users/priya/Desktop/TriviaGame/assets/images/background.jpg");
+    background-size: 100%;    
+}
+
+.container-fluid{
+    background-color: rgba(20,20,20, .5);
+    text-align: center;
+    margin-right: 250px;
+    margin-left: 250px;
+    color: white;
+    height: 100%;
+}
+p {
+    font-size: 35px;
+  }
+
+.question{
+    font-size: 50px;
+}
+
+h1{
+    font-size: 60px;
+}
+
+.clock{
+font-size: 20px;
+}
