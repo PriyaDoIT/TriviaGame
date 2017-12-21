@@ -1,10 +1,11 @@
 body{
-    background-image: url("/Users/priya/Desktop/TriviaGame/assets/images/background.jpg");
-    background-size: 100%;    
+    background-image: url("../images/map.jpg");
+    
+    background-size: cover;
 }
 
 .container-fluid{
-    background-color: rgba(20,20,20, .5);
+    background-color: rgba(20,20,20, .75);
     text-align: center;
     margin-right: 250px;
     margin-left: 250px;
@@ -26,3 +27,9 @@ h1{
 .clock{
 font-size: 20px;
 }
+
+img{
+    
+}
+
+
