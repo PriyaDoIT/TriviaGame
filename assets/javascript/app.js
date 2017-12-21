@@ -66,15 +66,9 @@ $(document).ready(function() {
     var currentQuestion = 0;
     var correct = 0;
     var wrong = 0;
-  
-   
-  
-    //click start to begin, displays counter
-  
-    $(".btn").click(function() {
-      $(".start").hide();
-      
-      var countDown = 5;
+
+  function reset(){
+            var countDown = 5;
       var counter = setInterval(timer, 1000);
       //if timer runs out, then display correct answer and add to the tally of wrong answers
       function timer() {
@@ -92,7 +86,7 @@ $(document).ready(function() {
           );
           currentQuestion++;
           clearInterval(counter);
-          reset();
+          setTimeout(reset,600);
         }
         $(".clock").text(countDown + " seconds");
       }
@@ -122,7 +116,7 @@ $(document).ready(function() {
           $("button").hide();
           $(".question").html("<p>Correct!</p>");
           currentQuestion++;
-          reset();
+          setTimeout(reset,600);
         } else {
           console.log("wrong");
           wrong++;
@@ -135,7 +129,79 @@ $(document).ready(function() {
               "</p>"
           );
           currentQuestion++;
-          reset();
+          setTimeout(reset,600);
+        }
+      });
+  }
+   
+  
+    //click start to begin, displays counter
+  
+    $(".btn").click(function() {
+      $(".start").hide();
+      
+      var countDown = 5;
+      var counter = setInterval(timer, 1000);
+      //if timer runs out, then display correct answer and add to the tally of wrong answers
+      function timer() {
+        countDown = countDown - 1;
+        if (countDown == 0) {
+          console.log("time is up");
+          wrong++;
+          $("button").hide();
+          $(".question").html(
+            "<p>Time is Up!!</p><p>The correct answer was:" +
+              questions[currentQuestion].choices[
+                questions[currentQuestion].correctAnswer
+              ] +
+              "</p>"
+          );
+          currentQuestion++;
+          clearInterval(counter);
+          setTimeout(reset,600);
+        }
+        $(".clock").text(countDown + " seconds");
+      }
+  
+      //display question and answers
+      $(".question").html(questions[currentQuestion].question);
+      for (i = 0; i < questions[currentQuestion].choices.length; i++) {
+        $(".choices").append(
+          "<p><button class= btn-info value =" +
+            i +
+            ">" +
+            questions[currentQuestion].choices[i] +
+            "</p></button>"
+        );
+      }
+      console.log(questions[currentQuestion].correctAnswer);
+  
+      //when user clicks an answer button, stop the timer
+      $("button").click(function(e) {
+        var userChoice = e.target.value;
+        console.log(userChoice);
+        clearInterval(counter);
+  
+        if (questions[currentQuestion].correctAnswer == userChoice) {
+          console.log("right!");
+          correct++;
+          $("button").hide();
+          $(".question").html("<p>Correct!</p>");
+          currentQuestion++;
+          setTimeout(reset,600);
+        } else {
+          console.log("wrong");
+          wrong++;
+          $("button").hide();
+          $(".question").html(
+            "<p>Wrong!</p><p>The correct answer was:" +
+              questions[currentQuestion].choices[
+                questions[currentQuestion].correctAnswer
+              ] +
+              "</p>"
+          );
+          currentQuestion++;
+          setTimeout(reset,600);
         }
       });
     });
